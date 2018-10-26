@@ -226,3 +226,103 @@ Processing by StaticController#homepage as HTML
   Rendered shared/_nav.html.erb (9.4ms)
   Rendered shared/_alerts.html.erb (0.1ms)
 Completed 200 OK in 59ms (Views: 56.5ms | ActiveRecord: 0.8ms)
+  [1m[36m (8.4ms)[0m  [1mCREATE TABLE `audit_logs` (`id` int(11) auto_increment PRIMARY KEY, `user_id` int(11), `status` int(11) DEFAULT 0, `start_date` date, `end_date` date, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (9.7ms)[0m  CREATE  INDEX `index_audit_logs_on_user_id` USING btree ON `audit_logs` (`user_id`) 
+  [1m[36m (8.4ms)[0m  [1mCREATE TABLE `posts` (`id` int(11) auto_increment PRIMARY KEY, `date` date, `rationale` text, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL, `user_id` int(11), `status` int(11) DEFAULT 0, `overtime_request` decimal(10) DEFAULT 0) ENGINE=InnoDB[0m
+  [1m[35m (10.4ms)[0m  CREATE  INDEX `index_posts_on_user_id` USING btree ON `posts` (`user_id`) 
+  [1m[36m (8.7ms)[0m  [1mCREATE TABLE `users` (`id` int(11) auto_increment PRIMARY KEY, `email` varchar(255) DEFAULT '' NOT NULL, `encrypted_password` varchar(255) DEFAULT '' NOT NULL, `reset_password_token` varchar(255), `reset_password_sent_at` datetime, `remember_created_at` datetime, `sign_in_count` int(11) DEFAULT 0 NOT NULL, `current_sign_in_at` datetime, `last_sign_in_at` datetime, `current_sign_in_ip` varchar(255), `last_sign_in_ip` varchar(255), `first_name` varchar(255), `last_name` varchar(255), `username` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL, `type` varchar(255), `phone` varchar(255)) ENGINE=InnoDB[0m
+  [1m[35m (6.1ms)[0m  CREATE UNIQUE INDEX `index_users_on_email` USING btree ON `users` (`email`) 
+  [1m[36m (11.0ms)[0m  [1mCREATE UNIQUE INDEX `index_users_on_reset_password_token` USING btree ON `users` (`reset_password_token`) [0m
+  [1m[35m (19.8ms)[0m  ALTER TABLE `audit_logs` ADD CONSTRAINT `fk_rails_1f26bc34ae`
+FOREIGN KEY (`user_id`)
+  REFERENCES `users` (`id`)
+
+  [1m[36m (21.8ms)[0m  [1mALTER TABLE `posts` ADD CONSTRAINT `fk_rails_5b5ddfd518`
+FOREIGN KEY (`user_id`)
+  REFERENCES `users` (`id`)
+[0m
+  [1m[35m (8.1ms)[0m  CREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB
+  [1m[36m (16.2ms)[0m  [1mCREATE UNIQUE INDEX `unique_schema_migrations`  ON `schema_migrations` (`version`) [0m
+  [1m[35m (0.6ms)[0m  SELECT version FROM `schema_migrations`
+  [1m[36m (1.2ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20180910192428')[0m
+  [1m[35m (1.8ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20180814204459')
+  [1m[36m (1.0ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20180814165652')[0m
+  [1m[35m (0.9ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20180906183217')
+  [1m[36m (1.0ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20180904193229')[0m
+  [1m[35m (1.0ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20180814163135')
+  [1m[36m (1.2ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20180814190309')[0m
+  [1m[35m (1.2ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20180827213158')
+  [1m[36m (8.6ms)[0m  [1mCREATE TABLE `audit_logs` (`id` int(11) auto_increment PRIMARY KEY, `user_id` int(11), `status` int(11) DEFAULT 0, `start_date` date, `end_date` date, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (6.4ms)[0m  CREATE  INDEX `index_audit_logs_on_user_id` USING btree ON `audit_logs` (`user_id`) 
+  [1m[36m (6.9ms)[0m  [1mCREATE TABLE `posts` (`id` int(11) auto_increment PRIMARY KEY, `date` date, `rationale` text, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL, `user_id` int(11), `status` int(11) DEFAULT 0, `overtime_request` decimal(10) DEFAULT 0) ENGINE=InnoDB[0m
+  [1m[35m (5.7ms)[0m  CREATE  INDEX `index_posts_on_user_id` USING btree ON `posts` (`user_id`) 
+  [1m[36m (6.8ms)[0m  [1mCREATE TABLE `users` (`id` int(11) auto_increment PRIMARY KEY, `email` varchar(255) DEFAULT '' NOT NULL, `encrypted_password` varchar(255) DEFAULT '' NOT NULL, `reset_password_token` varchar(255), `reset_password_sent_at` datetime, `remember_created_at` datetime, `sign_in_count` int(11) DEFAULT 0 NOT NULL, `current_sign_in_at` datetime, `last_sign_in_at` datetime, `current_sign_in_ip` varchar(255), `last_sign_in_ip` varchar(255), `first_name` varchar(255), `last_name` varchar(255), `username` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL, `type` varchar(255), `phone` varchar(255)) ENGINE=InnoDB[0m
+  [1m[35m (6.4ms)[0m  CREATE UNIQUE INDEX `index_users_on_email` USING btree ON `users` (`email`) 
+  [1m[36m (5.4ms)[0m  [1mCREATE UNIQUE INDEX `index_users_on_reset_password_token` USING btree ON `users` (`reset_password_token`) [0m
+  [1m[35m (13.8ms)[0m  ALTER TABLE `audit_logs` ADD CONSTRAINT `fk_rails_1f26bc34ae`
+FOREIGN KEY (`user_id`)
+  REFERENCES `users` (`id`)
+
+  [1m[36m (13.5ms)[0m  [1mALTER TABLE `posts` ADD CONSTRAINT `fk_rails_5b5ddfd518`
+FOREIGN KEY (`user_id`)
+  REFERENCES `users` (`id`)
+[0m
+  [1m[35m (6.5ms)[0m  CREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB
+  [1m[36m (11.0ms)[0m  [1mCREATE UNIQUE INDEX `unique_schema_migrations`  ON `schema_migrations` (`version`) [0m
+  [1m[35m (0.6ms)[0m  SELECT version FROM `schema_migrations`
+  [1m[36m (1.1ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20180910192428')[0m
+  [1m[35m (1.1ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20180814204459')
+  [1m[36m (0.9ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20180814165652')[0m
+  [1m[35m (0.8ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20180906183217')
+  [1m[36m (1.6ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20180904193229')[0m
+  [1m[35m (0.8ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20180814163135')
+  [1m[36m (0.8ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20180814190309')[0m
+  [1m[35m (0.8ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20180827213158')
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (1.0ms)[0m  BEGIN
+  [1m[36mUser Exists (2.0ms)[0m  [1mSELECT  1 AS one FROM `users` WHERE `users`.`email` = BINARY 'user@test.com' LIMIT 1[0m
+  [1m[35mSQL (0.7ms)[0m  INSERT INTO `users` (`email`, `encrypted_password`, `first_name`, `last_name`, `phone`, `created_at`, `updated_at`) VALUES ('user@test.com', '$2a$11$u4s3CPG1R4858/87EZnkteBtT8kA.HtktMJeFb59Ek1zoGukFaGKa', 'Reg', 'User', '5196436458', '2018-10-26 15:20:15', '2018-10-26 15:20:15')
+  [1m[36m (1.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.5ms)[0m  BEGIN
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO `posts` (`date`, `rationale`, `user_id`, `overtime_request`, `created_at`, `updated_at`) VALUES ('2018-10-26', '0 - reg user rationale content', 1, 2, '2018-10-26 15:20:15', '2018-10-26 15:20:15')[0m
+  [1m[35m (1.9ms)[0m  COMMIT
+  [1m[36m (0.6ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  INSERT INTO `posts` (`date`, `rationale`, `user_id`, `overtime_request`, `created_at`, `updated_at`) VALUES ('2018-10-26', '1 - reg user rationale content', 1, 2, '2018-10-26 15:20:15', '2018-10-26 15:20:15')
+  [1m[36m (2.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.5ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO `posts` (`date`, `rationale`, `user_id`, `overtime_request`, `created_at`, `updated_at`) VALUES ('2018-10-26', '2 - reg user rationale content', 1, 2, '2018-10-26 15:20:15', '2018-10-26 15:20:15')[0m
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36m (0.5ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO `posts` (`date`, `rationale`, `user_id`, `overtime_request`, `created_at`, `updated_at`) VALUES ('2018-10-26', '3 - reg user rationale content', 1, 2, '2018-10-26 15:20:15', '2018-10-26 15:20:15')
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO `posts` (`date`, `rationale`, `user_id`, `overtime_request`, `created_at`, `updated_at`) VALUES ('2018-10-26', '4 - reg user rationale content', 1, 2, '2018-10-26 15:20:15', '2018-10-26 15:20:15')[0m
+  [1m[35m (1.5ms)[0m  COMMIT
+  [1m[36m (1.0ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.9ms)[0m  SELECT  1 AS one FROM `users` WHERE `users`.`email` = BINARY 'admin@test.com' LIMIT 1
+  [1m[36mSQL (0.8ms)[0m  [1mINSERT INTO `users` (`type`, `email`, `encrypted_password`, `first_name`, `last_name`, `phone`, `created_at`, `updated_at`) VALUES ('AdminUser', 'admin@test.com', '$2a$11$HPSUOb5/1mPo3lAJIZbrx.Kq3lMYrA5tFVJbaoO9Ol05JXdUDACU.', 'Admin', 'Name', '5196436458', '2018-10-26 15:20:15', '2018-10-26 15:20:15')[0m
+  [1m[35m (2.8ms)[0m  COMMIT
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO `posts` (`date`, `rationale`, `user_id`, `created_at`, `updated_at`) VALUES ('2018-10-26', '0 - admin post rationale content', 2, '2018-10-26 15:20:15', '2018-10-26 15:20:15')
+  [1m[36m (0.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO `posts` (`date`, `rationale`, `user_id`, `created_at`, `updated_at`) VALUES ('2018-10-26', '1 - admin post rationale content', 2, '2018-10-26 15:20:15', '2018-10-26 15:20:15')[0m
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.8ms)[0m  INSERT INTO `posts` (`date`, `rationale`, `user_id`, `created_at`, `updated_at`) VALUES ('2018-10-26', '2 - admin post rationale content', 2, '2018-10-26 15:20:15', '2018-10-26 15:20:15')
+  [1m[36m (1.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.5ms)[0m  BEGIN
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO `posts` (`date`, `rationale`, `user_id`, `created_at`, `updated_at`) VALUES ('2018-10-26', '3 - admin post rationale content', 2, '2018-10-26 15:20:15', '2018-10-26 15:20:15')[0m
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO `posts` (`date`, `rationale`, `user_id`, `created_at`, `updated_at`) VALUES ('2018-10-26', '4 - admin post rationale content', 2, '2018-10-26 15:20:15', '2018-10-26 15:20:15')
+  [1m[36m (1.1ms)[0m  [1mCOMMIT[0m
+  [1m[35mUser Load (0.7ms)[0m  SELECT  `users`.* FROM `users`  ORDER BY `users`.`id` DESC LIMIT 1
+  [1m[36m (0.6ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  INSERT INTO `audit_logs` (`user_id`, `start_date`, `created_at`, `updated_at`) VALUES (2, '2018-10-20', '2018-10-26 15:20:15', '2018-10-26 15:20:15')
+  [1m[36m (2.1ms)[0m  [1mCOMMIT[0m
+  [1m[35mUser Load (0.6ms)[0m  SELECT  `users`.* FROM `users`  ORDER BY `users`.`id` DESC LIMIT 1
+  [1m[36m (0.5ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO `audit_logs` (`user_id`, `status`, `start_date`, `created_at`, `updated_at`) VALUES (2, 1, '2018-10-20', '2018-10-26 15:20:15', '2018-10-26 15:20:15')
+  [1m[36m (2.7ms)[0m  [1mCOMMIT[0m
+  [1m[35mUser Load (0.5ms)[0m  SELECT  `users`.* FROM `users`  ORDER BY `users`.`id` DESC LIMIT 1
