@@ -19,5 +19,6 @@ ENV BUNDLE_PATH /gems
 
 COPY . $APP_ROOT
 
-#EXPOSE  3000
+EXPOSE  3000
+#CMD ./startup.sh
 #CMD ["rails", "server", "-b", "0.0.0.0"]
