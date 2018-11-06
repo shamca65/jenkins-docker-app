@@ -22,7 +22,4 @@ RUN bundle install
 
 EXPOSE 3000
 #
-# CMD bundle exec rspec
-# CMD bin/rails s -b 0.0.0.0
-#
-CMD bundle exec rspec 
+CMD bin/rails s -b 0.0.0.0 
