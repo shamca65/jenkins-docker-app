@@ -15,10 +15,11 @@ ENV APP_ROOT /app
 RUN mkdir -p $APP_ROOT
 WORKDIR $APP_ROOT
 
-ENV BUNDLE_PATH /gems
-
 COPY . $APP_ROOT
 
-EXPOSE  3000
-#CMD ./startup.sh
-#CMD ["rails", "server", "-b", "0.0.0.0"]
+RUN gem install bundler
+RUN bundle install
+
+EXPOSE 3000
+#
+CMD bin/rails s -b 0.0.0.0 

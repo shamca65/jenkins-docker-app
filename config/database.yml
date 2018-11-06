@@ -14,8 +14,8 @@ default: &default
   encoding: utf8
   pool: 5
   username: root
-  password: #mypassword 
-  host: 127.0.0.1 
+  password: mypassword
+  host: mysql 
   port: 3306
 
 development:
